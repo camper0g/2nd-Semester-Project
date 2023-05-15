@@ -57,6 +57,7 @@ int main()
             default:
             {
                 printf("Please Enter Valid Choice\n");
+                system("cls");
                 break;
             }
         }
@@ -66,8 +67,8 @@ int main()
 
 void login()
 {
-    printf("Enter Password");
-    scanf("%d",&pass);
+    /*printf("Enter Password");
+    scanf("%d",&pass);*/
 }
 
 void view_appointment()
