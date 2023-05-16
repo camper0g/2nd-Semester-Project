@@ -4,8 +4,9 @@ void login();
 void view_appointment();
 void book_appointment();
 void cancel_appointment();
+void view_transactions();
+void delete_transactions();
 void edit_price();
-void change_password();
 int pass;
 int main()
 {
@@ -16,9 +17,10 @@ int main()
         printf("1. View Appointment\n");
         printf("2. Book Appointment\n");
         printf("3. Cancel Appointment\n");
-        printf("4. Edit Price Of Services\n");
-        printf("5. Change Password\n");
-        printf("6. Exit\n");
+        printf("4. View Transaction\n");
+        printf("5. Delete Transactions\n");
+        printf("6. Edit Price Of Services\n");
+        printf("7. Exit\n");
         printf("Enter Your choice: ");
         scanf("%d",&choice);
 
@@ -41,15 +43,20 @@ int main()
             }
             case 4:
             {
-                edit_price();
+                view_transactions();
                 break;
             }
             case 5:
             {
-                change_password();
+                delete_transactions();
                 break;
             }
             case 6:
+            {
+                edit_price();
+                break;
+            }
+            case 7:
             {
                 return 0;
                 break;
@@ -87,12 +94,17 @@ void cancel_appointment()
     system("cls");
 }
 
-void edit_price()
+void view_transactions()
 {
     system("cls");
 }
 
-void change_password()
+void delete_transactions()
+{
+    system("cls");
+}
+
+void edit_price()
 {
     system("cls");
 }
