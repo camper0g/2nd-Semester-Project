@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
-#include "variables.c"
-char username, password, uname, pass;
 void login();
 void view_appointment();
 void book_appointment();
@@ -14,6 +12,7 @@ void edit_price();
 int main()
 {
     login();
+    system("cls");
     int choice;
     while(1)
     {
@@ -77,52 +76,75 @@ int main()
 
 void login()
 {
-	int a=0,i=0;
+	int a=4,i=0;
     char uname[10],c=' '; 
     char pword[10],code[10];
-    char user[10]="user";
-    char pass[10]="pass";
     do
     {
         system("cls");
         
-        printf("\n  =========================  LOGIN FORM  =========================  ");
-        printf(" \n                       ENTER USERNAME:-");
+        printf("\n=========================  LOGIN FORM  =========================");
+        printf("\n\t\t\tENTER USERNAME:-");
         scanf("%s", &uname); 
-        printf(" \n                       ENTER PASSWORD:-");
+        printf("\t\t\tENTER PASSWORD:-");
         while(i<10)
         {
             pword[i]=getch();
             c=pword[i];
-            if(c==13) break;
-            else printf("*");
+            if(c == 13)    // ascii 13 is for carrige return, checks if the user has pressed enter key
+            {
+                break;
+            }
+            else
+            {
+                printf("*");
+            }
             i++;
         }
-        pword[i]='\0';
-        //char code=pword;
-        i=0;
-        //scanf("%s",&pword); 
-            if(strcmp(uname,"user")==0 && strcmp(pword,"pass")==0)
-        {
-        printf("  \n\n\n       WELCOME TO OUR SYSTEM !!!! LOGIN IS SUCCESSFUL");
-        printf("\n\n\n\t\t\t\tPress any key to continue...");
-        getch();//holds the screen
-        break;
-        }
-        else
-        {
-            printf("\n        SORRY !!!!  LOGIN IS UNSUCESSFUL");
-            a++;
-            
-            getch();//holds the screen
-            
-        }
-    }while(a<=3);
+        pword[i]='\0';           //This line adds a null terminator ('\0') at the end of the pword array to mark the end of the password string.
+        i=0;                     //This line resets the value of i to 0 to reuse it for further input.
 
-	if (a>2)
+
+    // Open the file in read mode
+    FILE *file = fopen("login.bat", "r");
+
+    if (file == NULL) {
+        printf("\n\n\t\tERROR OPENING FILE.\n");
+        system("pause");
+    }
+
+    // Read username and password from the file
+    char fileUsername[20];
+    char filePassword[20];
+    fscanf(file, "%s %s", fileUsername, filePassword);
+
+    // Close the file
+    fclose(file);
+
+    if(strcmp(uname,fileUsername)==0 && strcmp(pword,filePassword)==0)
+    {
+        system("cls");
+        printf("\n\n\t\t\t   LOGIN SUCCESSFUL\n\n\t\t\tWELCOME TO OUR SYSTEM\n\n");
+        printf("\t\t\t");
+        system("pause");
+        break;
+    }
+    else
+    {
+        system("cls");
+        printf("\n\n\t\t\tWRONG USERNAME/PASSWORD");
+        a--;
+        printf("\n\n\t\t\tYOU HAVE %d TRIES LEFT\n\n",a);
+        printf("\t\t\t");
+        system("pause");
+    }
+    }while(a>=1);
+
+	if (a <= 1)
 	{
-		printf("\nSorry you have entered the wrong username and password for four times!!!");
-		
+        system("cls");
+		printf("\n\n\t\tYOU HAVE EXCEEDED THE PASSOWRD INPUT LIMIT!!!");
+        printf("\n\n\t\t\t PRESS ANY KEY TO EXIT");
 		getch();
         exit(0);
 		
