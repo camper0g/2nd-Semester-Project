@@ -105,45 +105,45 @@ void login()
         i=0;                     //This line resets the value of i to 0 to reuse it for further input.
 
 
-    // Open the file in read mode
-    FILE *file = fopen("login.bat", "r");
+        // Open the file in read mode
+        FILE *file = fopen("login.bat", "r");
 
-    if (file == NULL) {
-        printf("\n\n\t\tERROR OPENING FILE.\n");
-        system("pause");
-    }
+        if (file == NULL) {
+            printf("\n\n\t\tERROR OPENING FILE.\n");
+            system("pause");
+        }
 
-    // Read username and password from the file
-    char fileUsername[20];
-    char filePassword[20];
-    fscanf(file, "%s %s", fileUsername, filePassword);
+        // Read username and password from the file
+        char fileUsername[20];
+        char filePassword[20];
+        fscanf(file, "%s %s", fileUsername, filePassword);
 
-    // Close the file
-    fclose(file);
+        // Close the file
+        fclose(file);
 
-    if(strcmp(uname,fileUsername)==0 && strcmp(pword,filePassword)==0)
-    {
-        system("cls");
-        printf("\n\n\t\t\t   LOGIN SUCCESSFUL\n\n\t\t\tWELCOME TO OUR SYSTEM\n\n");
-        printf("\t\t\t");
-        system("pause");
-        break;
-    }
-    else
-    {
-        system("cls");
-        printf("\n\n\t\t\tWRONG USERNAME/PASSWORD");
-        a--;
-        printf("\n\n\t\t\tYOU HAVE %d TRIES LEFT\n\n",a);
-        printf("\t\t\t");
-        system("pause");
-    }
+        if(strcmp(uname,fileUsername)==0 && strcmp(pword,filePassword)==0)
+        {
+            system("cls");
+            printf("\n\n\t\t\t   LOGIN SUCCESSFUL\n\n\t\t\tWELCOME TO OUR SYSTEM\n\n");
+            printf("\t\t\t");
+            system("pause");
+            break;
+        }
+        else
+        {
+            system("cls");
+            printf("\n\n\t\t\tWRONG USERNAME/PASSWORD");
+            a--;
+            printf("\n\n\t\t\tYOU HAVE %d TRIES LEFT\n\n",a);
+            printf("\t\t\t");
+            system("pause");
+        }
     }while(a>=1);
 
 	if (a <= 1)
 	{
         system("cls");
-		printf("\n\n\t\tYOU HAVE EXCEEDED THE PASSOWRD INPUT LIMIT!!!");
+		printf("\n\n\t\tYOU HAVE EXCEEDED THE INPUT LIMIT!!!");
         printf("\n\n\t\t\t PRESS ANY KEY TO EXIT");
 		getch();
         exit(0);
