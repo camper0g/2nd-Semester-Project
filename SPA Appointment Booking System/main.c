@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+
 void login();
 void view_appointment();
 void book_appointment();
@@ -10,6 +11,14 @@ void view_transactions();
 void delete_transactions();
 void edit_price();
 void change_password();
+
+struct customer_info{
+    char name[50];
+    long long int number;
+    int time;
+    int id;
+}cs[300];
+
 int main()
 {
     login();
@@ -21,16 +30,30 @@ int main()
     int choice;
     while(1)
     {
-        printf("1. View Appointment\n");
-        printf("2. Book Appointment\n");
-        printf("3. Cancel Appointment\n");
-        printf("4. View Transaction\n");
-        printf("5. Delete Transactions\n");
-        printf("6. Edit Price Of Services\n");
-        printf("7. Change Password\n");
-        printf("8. Exit\n");
-        printf("Enter Your choice: ");
+        printf("||===========================================================================||\n");
+        printf("||********************** SPA APPOINTMENT BOOKING SYSTEM *********************||\n");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [1] => View Appointment                                            ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [2] => Book Appointment                                            ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [3] => Cancel Appointment                                          ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [4] => View Transaction                                            ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [5] => Delete Transactions                                         ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [6] => Edit Price Of Services                                      ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [7] => Change Password                                             ||\n");
+        printf("||                                                                           ||\n");
+        printf("||  PRESS [8] => Exit                                                        ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        printf("||Enter Your choice: ");
         scanf("%d",&choice);
+        fflush(stdin);
 
         switch(choice)
         {
@@ -88,9 +111,7 @@ int main()
                 break;
             }
         }
-
     }
-
 }
 
 void login()
@@ -104,24 +125,23 @@ void login()
         printf("\n\t\t\tENTER USERNAME:-");
         scanf("%s", &uname); 
         printf("\t\t\tENTER PASSWORD:-");
-        while(i<10)                                  //loop to get the password for every address in the array
+        while(i<10)
         {
-            pword[i]=getch();                        //get the password
-            c=pword[i];                              //stores the input in c to check if the user has entred enter key or not
-            if(c == 13)                              // ascii 13 is for carrige return, checks if the user has pressed enter key
+            pword[i]=getch();                       
+            c=pword[i];                 
+            if(c == 13)              
             {
                 break;                                          
             }
             else
             {
-                printf("*");                         //prints astrick in every input character
+                printf("*");                        
             }
-            i++;                                     //increases the value of i
+            i++;                      
         }
-        pword[i]='\0';                               //This line adds a null terminator ('\0') at the end of the pword array to mark the end of the password string.
-        i=0;                                         //This line resets the value of i to 0 to reuse it for further input tries.
+        pword[i]='\0';                        
+        i=0;                                      
 
-        // Open the file in read mode (in binary mode)
         FILE *file = fopen("login", "rb");
 
         if (file == NULL) 
@@ -155,7 +175,7 @@ void login()
         }
     }while(a>=1);
 
-	if (a <= 1)
+	if (a <= 0)
 	{
         system("cls");
 		printf("\n\n\t\tYOU HAVE EXCEEDED THE INPUT LIMIT!!!");
@@ -173,8 +193,12 @@ void view_appointment()
 
 void book_appointment()
 {
-    system("pause");
-    system("cls");
+    // system("pause");
+    // system("cls");
+    printf("Services available: ");
+    printf("HotStone Massage \t Price:");
+
+
 }
 
 void cancel_appointment() 
