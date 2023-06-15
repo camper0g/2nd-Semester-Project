@@ -5,7 +5,6 @@
 #include <ctype.h>
 
 void login();
-void view_appointment();
 void book_appointment();
 void cancel_appointment();
 void view_transactions();
@@ -22,11 +21,11 @@ struct book{
 int main()
 {
     //login();
-    // system("cls");
-    // printf("\n\n\t\t\t   LOGIN SUCCESSFUL\n\n\t\t\tWELCOME TO OUR SYSTEM\n\n");
-    // printf("\t\t\t");
-    // system("pause");
-    // system("cls");
+    system("cls");
+    printf("\n\n\t\t\t   LOGIN SUCCESSFUL\n\n\t\t\tWELCOME TO OUR SYSTEM\n\n");
+    printf("\t\t\t");
+    system("pause");
+    system("cls");
     int choice;
     while(1)
     {
@@ -34,21 +33,19 @@ int main()
         printf("||********************** SPA APPOINTMENT BOOKING SYSTEM *********************||\n");
         printf("||===========================================================================||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [1] => View Appointment                                            ||\n");
+        printf("||  PRESS [1] => Book Appointment                                            ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [2] => Book Appointment                                            ||\n");
+        printf("||  PRESS [2] => Cancel Appointment                                          ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [3] => Cancel Appointment                                          ||\n");
+        printf("||  PRESS [3] => View Transaction                                            ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [4] => View Transaction                                            ||\n");
+        printf("||  PRESS [4] => Delete Transactions                                         ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [5] => Delete Transactions                                         ||\n");
+        printf("||  PRESS [5] => Edit Price Of Services                                      ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [6] => Edit Price Of Services                                      ||\n");
+        printf("||  PRESS [6] => Change Password                                             ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [7] => Change Password                                             ||\n");
-        printf("||                                                                           ||\n");
-        printf("||  PRESS [8] => Exit                                                        ||\n");
+        printf("||  PRESS [7] => Exit                                                        ||\n");
         printf("||                                                                           ||\n");
         printf("||===========================================================================||\n");
         printf("||Enter Your choice: ");
@@ -59,35 +56,32 @@ int main()
         {
             case 1:
             {
-                view_appointment();
+                book_appointment();
+                system("pause");
+                system("cls");
                 break;
             }
             case 2:
             {
-                book_appointment();
+                cancel_appointment();
                 break;
             }
             case 3:
             {
-                cancel_appointment();
+                view_transactions();
                 break;
             }
             case 4:
             {
-                view_transactions();
+                delete_transactions();
                 break;
             }
             case 5:
             {
-                delete_transactions();
-                break;
-            }
-            case 6:
-            {
                 edit_price();
                 break;
             }
-            case 7:
+            case 6:
             {
                 change_password();
                 printf("\n\n\t\t YOUR PASSWORD HAS BEEN SUCCESSFULLY CHANGED");
@@ -96,7 +90,7 @@ int main()
                 system("cls");
                 break;
             }
-            case 8:
+            case 7:
             {
                 system("cls");
                 printf("\n\n\t\t THANK YOU FOR USING OUR SYSTEM");
@@ -186,36 +180,24 @@ void login()
 	}
 }
 
-void view_appointment()
-{
-    system("pause");
-    system("cls");
-}
-
 void book_appointment()
 {
 
     struct book b;
     FILE *bookf;
     FILE *cusf;
-    int total_seats, total_amount, uinput_sn, temp_sin, i, j, k;
+    int total_amount, uinput_sn, temp_sin, i, j, k;
     long long int mobile;
     char fname[15], lname[15];
-    char ch, choice, ch1;
+    char choice;
 
     bookf = fopen("data.txt", "r");
 
     if(bookf == NULL)
     {
         printf("File not found!\n");
-        // return;
+        return;
     }
-
-    // else if(ch=fgetc(bookf) == EOF)
-    // {
-    //     printf("\nNo Appointments are available to book right now!\nVisit after few days!\n");
-    //     return;
-    // }
 
     else
     {
@@ -227,53 +209,69 @@ void book_appointment()
             fscanf(bookf,"\n%d",&b.time[i]);
         }
         fclose(bookf);
-        printf("||=============================== SERVICE AVAILABLE ================================||\n");
-        printf("\n AVAILABLE SERVICE: %s", b.service);
-        printf("\n SERIVE PRICE: %d", b.price);
-        printf("\n Avaible Scheadules:");
+        printf("||===========================================================================||\n");
+        printf("||***************************** SERVICE AVAILABLE ***************************||\n");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||  AVAILABLE SERVICE => %s\n", b.service);
+        printf("||                                                                           ||\n");
+        printf("||  SERIVE PRICE => %d\n", b.price);
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        printf("||**************************** AVAILABLE SCHEDULES *************************||\n");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
         if(b.time[0] == 1){
-            printf("\nPRESS [1] => 10AM - 11PM");
+            printf("||  PRESS [1] => 10AM - 11PM                                                 ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("||  10AM - 11PM => BOOKED                                                    ||\n");
         }
+        printf("||                                                                           ||\n");
         if(b.time[1] == 1){
-            printf("\nPRESS [2] => 11AM - 12PM");
+            printf("||  PRESS [2] => 11AM - 12PM                                                 ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("||  11AM - 12PM => BOOKED                                                    ||\n");
         }
+        printf("||                                                                           ||\n");
         if(b.time[2] == 1){
-            printf("\nPRESS [3] => 12PM - 1PM");
+            printf("||  PRESS [3] => 12PM - 1PM                                                   ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("||  12PM - 1PM => BOOKED                                                     ||\n");
         }
+        printf("||                                                                           ||\n");
         if(b.time[3] == 1){
-            printf("\nPRESS [4] => 1PM - 2PM");
+            printf("||  PRESS [4] => 1PM - 2PM                                                   ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("||  1PM - 2PM => BOOKED                                                      ||\n");
         }
+        printf("||                                                                           ||\n");
         if(b.time[4] == 1){
-            printf("\nPRESS [5] =>  2PM - 3PM");
+            printf("||  PRESS [5] =>  2PM - 3PM                                                  ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("||  2PM - 3PM => BOOKED                                                      ||\n");
         }
+        printf("||                                                                           ||\n");
         if(b.time[5] == 1){
-            printf("\nPRESS [6] => 3PM - 4PM");
+            printf("||  PRESS [6] => 3PM - 4PM                                                   ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("||  3PM - 4PM => BOOKED                                                      ||\n");
         }
+        printf("||                                                                           ||\n");
         if(b.time[6] == 1){
-            printf("\nPRESS [7] => 4PM - 5PM");
+            printf("||  PRESS [7] => 4PM - 5PM                                                   ||\n");
         }
         else{
-            printf("\n====BOOKED====");
+            printf("|| 4PM - 5PM => BOOKED                                                       ||\n");
         }
     }
+    printf("||                                                                           ||\n");
+    printf("||===========================================================================||\n");
 
     k=0;
     for(i = 0; i < 7; i++){
@@ -284,7 +282,10 @@ void book_appointment()
     }
 
     if(k != 1){
-        printf("\n The Appointments are full!\nVisit Us After Few Days");
+        system("cls");
+        printf("\n\n\t\tThe Appointments are full!\nVisit Us After Few Days");
+        system("pause");
+        system("cls");
         return;
     }
     else
@@ -299,16 +300,18 @@ void book_appointment()
             fscanf(bookf,"\n%d",&b.time[i]);
         }
         fclose(bookf);
-        printf("\nDo you want to reserve an appontment? \nPress [Y/y] => YES \nPress [N/n] => NO");
-        printf("Enter Your Choice:");
+        printf("\t\tDo you want to reserve an appontment? \n\t\tPress [Y/y] => YES \n\t\tPress [N/n] => NO\n");
+        printf("||===========================================================================||\n");
+
+        printf("\nEnter Your Choice: ==>");
         scanf("%c", &choice);
         tolower(choice);
         if(choice == 'y'){
-            printf("\n===Fill Details===");
+            printf("===Fill Details===\n");
 
             name:
             {
-                printf("\nEnter your name (First Name<space>Last Name):");
+                printf("Enter your name (First Name<space>Last Name):");
                 scanf("%s %s", fname, lname);
 
                 for( i = 0; i<strlen(fname); i++){
@@ -317,7 +320,7 @@ void book_appointment()
                         continue;
                     }
                     else{
-                        printf("\nFirst name is invalid! Enter alphabets only!!!");
+                        printf("First name is invalid! Enter alphabets only!!!\n");
                         goto name;
                     }
                 }
@@ -327,7 +330,7 @@ void book_appointment()
                         continue;
                     }
                     else{
-                        printf("\nFirst name is invalid! Enter alphabets only!!!");
+                        printf("Last name is invalid! Enter alphabets only!!!\n");
                         goto name;
                     }
                 }
@@ -337,12 +340,12 @@ void book_appointment()
             number:
             {
                 mobile = 0;
-                printf("\nEnter Your Mobile Number:");
+                printf("Enter Your Mobile Number:");
                 scanf("%lld", &mobile);
                 fflush(stdin);
 
                 if(mobile<=9000000000 || mobile>=9999999999){
-                    printf("\n Invalid Mobile Number");
+                    printf("Invalid Mobile Number\n");
                     goto number;
                 }
                 else{
@@ -352,10 +355,10 @@ void book_appointment()
 
             appointments:
             {
-                printf("Select Schedule Number:\n");
+                printf("Select Schedule Number==> ");
                 scanf("%d", &uinput_sn);
                 temp_sin = uinput_sn;
-                
+
                 if(uinput_sn > 0 && uinput_sn < 8){
                     for(i = 0; i < 7; i++){
                         if(uinput_sn == i+1){
@@ -364,14 +367,14 @@ void book_appointment()
                                 break;
                             }
                             else{
-                                printf("\n Already Booked");
+                                printf("Already Booked\n");
                                 goto appointments;
                             }
                         }
                     }
                 }
                 else{
-                    printf("\nInvalid Input");
+                    printf("Invalid Input\n");
                     goto appointments;
                 }
             }
@@ -380,10 +383,10 @@ void book_appointment()
             {
                 total_amount = b.price;
                 printf("\nAppointment Reserved Successfully");
-                printf("**BILL**");
+                printf("\n**BILL**");
                 printf("\nName: %s %s", fname, lname);
                 printf("\nMobile Number: %lld", mobile);
-                printf("Service Name: %s", b.service);
+                printf("\nService Name: %s", b.service);
                 if(temp_sin == 1){
                     printf("\nScheduled at 10AM - 11AM");
                 }
@@ -405,6 +408,7 @@ void book_appointment()
                 else if(temp_sin == 7){
                     printf("\nScheduled at 4PM - 5PM");
                 }
+                printf("\nTotal Amount: %d", total_amount);
 
                 cusf = fopen("customerinfo.txt","a");
 
@@ -412,7 +416,7 @@ void book_appointment()
                     printf("File Not Found!");
                 }
                 else{
-                    fprintf(cusf,"%s %s %lld %s %d \n",fname, lname, mobile, b.service, temp_sin);
+                    fprintf(cusf,"%s %s %lld %s %d %d \n",fname, lname, mobile, b.service, temp_sin, total_amount);
                 }
                 printf("\n");
                 fclose(cusf);
@@ -436,7 +440,7 @@ void book_appointment()
             return;
         }
         else{
-            printf("Wrong choice!!!");
+            printf("Wrong choice!!!\n");
             goto choose;
         }
     }
