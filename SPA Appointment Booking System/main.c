@@ -13,6 +13,10 @@ void delete_transactions();
 void edit_price();
 void change_password();
 
+FILE *bookf;
+FILE *cusf;
+int i, j, k;
+
 struct book{
     char service[50];
     int price;
@@ -39,13 +43,13 @@ int main()
     printf("||                                                                           ||\n");
     printf("||===========================================================================||\n");
     printf("                             LOADING MAIN MENU");
-    Sleep(1000);
+    Sleep(500);
     printf(".");
-    Sleep(1000);
+    Sleep(500);
     printf(".");
-    Sleep(1000);
+    Sleep(500);
     printf(".");
-    Sleep(1000);
+    Sleep(500);
     system("cls");
     int choice;
     while(1)
@@ -200,6 +204,7 @@ void login()
             a--;
             printf("||                         YOU HAVE %d TRIES LEFT!                            ||\n",a);
             printf("||===========================================================================||\n");
+            printf("||                        WAIT FEW SECONDS BEFORE YOU TRY AGAIN");
             Sleep(1500);
             system("cls");
         }
@@ -225,16 +230,21 @@ void book_appointment()
 
     struct book b;
     struct customerinfo c;
-    FILE *bookf;
-    FILE *cusf;
-    int i, j, k;
     char choice;
 
     bookf = fopen("data.txt", "r");
 
     if(bookf == NULL)
     {
-        printf("File not found!\n");
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                         NO SERVICES RECORDS FOUND!                        ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+        getch();
+        system("cls");
         return;
     }
 
@@ -300,7 +310,7 @@ void book_appointment()
             printf("||  PRESS [7] => 04PM - 05PM                                                 ||\n");
         }
         else{
-            printf("|| 04PM - 05PM => BOOKED                                                     ||\n");
+            printf("||  04PM - 05PM => BOOKED                                                    ||\n");
         }
     }
     printf("||                                                                           ||\n");
@@ -343,7 +353,6 @@ void book_appointment()
         printf("||      Press [Y/y] => YES                                                   ||\n");
         printf("||      Press [N/n] => NO                                                    ||\n");
         printf("||===========================================================================||\n");
-
         printf("||      Enter Your Choice ==> ");
         scanf("%c", &choice);
         fflush(stdin);
@@ -404,7 +413,7 @@ void book_appointment()
                     for(i = 0; i < 7; i++){
                         if(c.sn == i+1){
                             if(b.time[i] == 1){
-                                b.time[i]--;
+                                b.time[i] = 0;
                                 break;
                             }
                             else{
@@ -426,7 +435,16 @@ void book_appointment()
 
                 cusf = fopen("customerinfo.txt","r");
                 if(cusf == NULL){
-                    printf("Error Opening File\n");
+                    system("cls");
+                    printf("||===========================================================================||\n");
+                    printf("||                                                                           ||\n");
+                    printf("||                         NO CUSTOMERS RECORDS FOUND!                       ||\n");
+                    printf("||                                                                           ||\n");
+                    printf("||===========================================================================||\n");
+                    printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+                    getch();
+                    system("cls");
+                    return;
                 }
                 else{
                     fseek(cusf, -3, SEEK_END);
@@ -447,31 +465,29 @@ void book_appointment()
                 printf("||  Mobile Number ==> %lld\n", c.mobile);
                 printf("||  Service Name  ==> %s\n", b.service);
                 if(c.sn == 1){
-                    printf("||  Scheduled at 10AM - 11AM\n");
+                    printf("||  Scheduled at  ==> 10AM - 11AM\n");
                 }
                 else if(c.sn == 2){
-                    printf("||  Scheduled at 11AM - 12PM\n");
+                    printf("||  Scheduled at  ==> 11AM - 12PM\n");
                 }
                 else if(c.sn == 3){
-                    printf("||  Scheduled at 12AM - 1PM\n");
+                    printf("||  Scheduled at  ==> 12AM - 1PM\n");
                 }
                 else if(c.sn == 4){
-                    printf("||  Scheduled at 1PM - 2PM\n");
+                    printf("||  Scheduled at  ==> 1PM - 2PM\n");
                 }
                 else if(c.sn == 5){
-                    printf("||  Scheduled at 2PM - 3PM\n");
+                    printf("||  Scheduled at  ==> 2PM - 3PM\n");
                 }
                 else if(c.sn == 6){
-                    printf("||  Scheduled at 3PM - 4PM\n");
+                    printf("||  Scheduled at  ==> 3PM - 4PM\n");
                 }
                 else if(c.sn == 7){
-                    printf("||  Scheduled at 4PM - 5PM\n");
+                    printf("||  Scheduled at  ==> 4PM - 5PM\n");
                 }
-                printf("||  Total Amount: %d\n", c.total);
+                printf("||  Total Amount  ==> %d\n", c.total);
 
                 printf("||===========================================================================||\n");
-                system("cls");
-
                 cusf = fopen("customerinfo.txt","a");
 
                 if(cusf == NULL){
@@ -491,6 +507,7 @@ void book_appointment()
 
                 printf("||  PRESS ANY KEY TO CONTINUE");
                 getch();
+                system("cls");
             }
         }
         else if(choice == 'n'){
@@ -498,10 +515,10 @@ void book_appointment()
             printf("||===========================================================================||\n");
             printf("||                                                                           ||\n");
             printf("||                          NO PROBLEM! VISIT US AGAIN                       ||\n");
-            printf("||              YOU'LL BE RETURNED BACK TO MAIN MENU IN 3 SECONDS            ||\n");
+            printf("||             YOU'LL BE RETURNED BACK TO MAIN MENU IN A FEW SECONDS         ||\n");
             printf("||                                                                           ||\n");
             printf("||===========================================================================||\n");
-            Sleep(3000);
+            Sleep(2000);
             system("cls");
             return;
         }
@@ -510,10 +527,10 @@ void book_appointment()
             printf("||===========================================================================||\n");
             printf("||                                                                           ||\n");
             printf("||                              ENTER VALID INPUT                            ||\n");
-            printf("||                 PLEASE RE-CONSIDER YOUR INPUT IN 3 SECONDS                ||\n");
+            printf("||                PLEASE RE-CONSIDER YOUR INPUT IN A FEW SECONDS             ||\n");
             printf("||                                                                           ||\n");
             printf("||===========================================================================||\n");
-            Sleep(3000);
+            Sleep(1500);
             system("cls");
             book_appointment();
         }
@@ -522,8 +539,153 @@ void book_appointment()
 
 void cancel_appointment() 
 {
-    system("pause");
+    
     system("cls");
+    
+    struct book b;
+    struct customerinfo c;
+
+    int tid;
+    long long int mobile;
+    char choice;
+
+    printf("||===========================================================================||\n");
+    printf("||**************************** CANCEL APPOINTMENT ***************************||\n");
+    printf("||===========================================================================||\n");
+    printf("||                                                                           ||\n");
+    printf("||      DO YOU WANT TO CANCEL AN APPOINTMENT?                                ||\n");
+    printf("||      Press [Y/y] => YES                                                   ||\n");
+    printf("||      Press [N/n] => NO                                                    ||\n");
+    printf("||===========================================================================||\n");
+
+    printf("||      Enter Your Choice ==> ");
+    scanf("%c", &choice);
+    fflush(stdin);
+
+    tolower(choice);
+    if(choice == 'y'){
+        printf("||============================= Fill Details ================================||\n");
+
+        printf("||  Enter Your Ticket ID ==> ");
+        scanf("%d", &tid);
+
+        i = 0;
+        if( i < 3){
+            printf("||  Enter Your Mobile Number For Verification ==> ");
+            scanf("%lldd", &mobile);
+            i++;
+        }
+        else{
+            system("cls");
+            printf("||===========================================================================||\n");
+            printf("||                                                                           ||\n");
+            printf("||                           TOO MANY ATTEMPTS!!!                            ||\n");
+            printf("||                                                                           ||\n");
+            printf("||===========================================================================||\n");
+            printf("||                        RETURNING BACK TO MAIN MENU IN FEW SECONDS");
+            Sleep(1500);
+            system("cls");
+            return;
+        }
+
+        cusf = fopen("customerinfo.txt", "r+");
+
+        if(cusf == NULL)
+        {
+            system("cls");
+            printf("||===========================================================================||\n");
+            printf("||                                                                           ||\n");
+            printf("||                         NO CUSTOMERS RECORDS FOUND!                       ||\n");
+            printf("||                                                                           ||\n");
+            printf("||===========================================================================||\n");
+            printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+            getch();
+            system("cls");
+            return;
+        }
+        else{
+
+            while(fscanf(cusf,"%s %s %lld %s %d %d %d\n", c.fname, c.lname, &c.mobile, b.service, &c.sn, &c.total, &c.tid) != EOF){
+                if(tid == c.tid && mobile == c.mobile){
+                    break;
+                }
+            }
+            if(tid != c.tid && mobile != c.mobile){
+                printf("**  VERIFICATION FAILED");
+            }
+            
+            fclose(cusf);
+
+            bookf = fopen("data.txt","r");
+            if(bookf == NULL)
+            {
+                system("cls");
+                printf("||===========================================================================||\n");
+                printf("||                                                                           ||\n");
+                printf("||                         NO SERVICES RECORDS FOUND!                        ||\n");
+                printf("||                                                                           ||\n");
+                printf("||===========================================================================||\n");
+                printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+                getch();
+                system("cls");
+                return;
+            }
+            fscanf(bookf,"%s %d", b.service, &b.price);
+            for( i = 0; i < 7; i++){
+                fscanf(bookf,"\n%d",&b.time[i]);
+            }
+            fclose(bookf);
+            
+            bookf = fopen("data.txt","w");
+            fprintf(bookf,"%s %d",b.service, b.price);
+            for (i =0; i < 7; i++){
+                if(c.sn == i+1){
+                    if(b.time[i] == 0){
+                        b.time[i] = 1;
+                        fprintf(bookf,"\n%d", b.time[i]);
+                    }
+                }
+                else{
+                    fprintf(bookf,"\n%d",b.time[i]);
+                }
+            }
+            fclose(bookf);
+        }
+
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                    APPOINTMENT CANCELLED SUCCESSFULLY                     ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        printf("                       PRESS ANY KEY TO CONTINUE");
+        getch();
+        system("cls");
+    }
+    else if(choice == 'n'){
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                                 NO PROBLEM!                               ||\n");
+        printf("||             YOU'LL BE RETURNED BACK TO MAIN MENU IN A FEW SECONDS         ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        Sleep(2000);
+        system("cls");
+        return;
+    }
+    else{
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                              ENTER VALID INPUT                            ||\n");
+        printf("||                PLEASE RE-CONSIDER YOUR INPUT IN A FEW SECONDS             ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        Sleep(1500);
+        system("cls");
+        cancel_appointment();
+    }
 }
 
 void view_transactions()
@@ -586,7 +748,7 @@ void change_password()
     printf("||                     LOGIN INFO UPDATED SUCCESSFULLY                       ||\n");
     printf("||                                                                           ||\n");
     printf("||===========================================================================||\n");
-    printf("                       ENTER ANY KEY TO CONTINUE");
+    printf("                       PRESS ANY KEY TO CONTINUE");
     getch();
     system("cls");
 }
