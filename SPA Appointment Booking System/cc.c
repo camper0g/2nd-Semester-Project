@@ -8,8 +8,8 @@
 void login(){};
 void book_appointment(){};
 void cancel_appointment(){};
-void view_transactions();
-void delete_transactions(){};
+void view_transactions(){};
+void delete_transactions();
 void edit_price(){};
 void change_password(){};
 
@@ -41,13 +41,13 @@ int main()
     printf("||                                                                           ||\n");
     printf("||===========================================================================||\n");
     printf("                             LOADING MAIN MENU");
-    Sleep(500);
-    printf(".");
-    Sleep(500);
-    printf(".");
-    Sleep(500);
-    printf(".");
-    Sleep(500);
+    // Sleep(500);
+    // printf(".");
+    // Sleep(500);
+    // printf(".");
+    // Sleep(500);
+    // printf(".");
+    // Sleep(500);
     system("cls");
     int choice;
     while(1)
@@ -136,8 +136,77 @@ int main()
     }
 }
 
-void view_transactions(){
-
+void delete_transactions()
+{
     system("cls");
+    char choice;
+    printf("||===========================================================================||\n");
+    printf("||******************** DELETE ALL APPOINTMENT RECORDS ***********************||\n");
+    printf("||===========================================================================||\n");
+    printf("||                                                                           ||\n");
+    printf("||      DO YOU WANT TO DELETE ALL APPOINTMENT RECORDS?                       ||\n");
+    printf("||      Press [Y/y] => YES                                                   ||\n");
+    printf("||      Press [N/n] => NO                                                    ||\n");
+    printf("||===========================================================================||\n");
 
+    printf("||      Enter Your Choice ==> ");
+    scanf("%c", &choice);
+    fflush(stdin);
+    tolower(choice);
+
+    if(choice == 'y'){
+        cusf = fopen("customerinfo.txt", "w");
+
+        if(cusf == NULL)
+        {
+            system("cls");
+            printf("||===========================================================================||\n");
+            printf("||                                                                           ||\n");
+            printf("||                         NO CUSTOMERS RECORDS FOUND!                       ||\n");
+            printf("||                                                                           ||\n");
+            printf("||===========================================================================||\n");
+            printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+            getch();
+            system("cls");
+            return;
+        }
+        else{
+            system("cls");
+            printf("||===========================================================================||\n");
+            printf("||                                                                           ||\n");
+            printf("||                         RECORDS CLEARED SUCCESSFULLY                      ||\n");
+            printf("||                                                                           ||\n");
+            printf("||===========================================================================||\n");
+            printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+            getch();
+            system("cls");
+        }
+        fclose(cusf);
+    }
+
+    else if(choice == 'n'){
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                                 NO PROBLEM!                               ||\n");
+        printf("||             YOU'LL BE RETURNED BACK TO MAIN MENU IN A FEW SECONDS         ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        Sleep(2000);
+        system("cls");
+        return;
+    }
+        else{
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                              ENTER VALID INPUT                            ||\n");
+        printf("||                PLEASE RE-CONSIDER YOUR INPUT IN A FEW SECONDS             ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        Sleep(1500);
+        system("cls");
+        delete_transactions();
+    }
+    system("cls");
 }
