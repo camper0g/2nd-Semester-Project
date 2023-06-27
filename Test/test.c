@@ -1,30 +1,31 @@
-#include "declaration.h"
-#include "login.h"
-#include "booking.h"
-#include "admin.h"
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include <windows.h>
 
-void rlogin();
-void alogin();
-void rmenu();
-void amenu();
-void book_appointment();
-void cancel_appointment();
-void edit_appointment();
 void view_transactions();
 void delete_transactions();
 void edit_services();
 void change_password();
+void rmenu();
+void amenu();
+void rlogin();
+void alogin();
+void book_appointment();
+void cancel_appointment();
+void edit_appointment();
+
+
 
 int main(){
     int choice;
     system("cls");
     printf("||===========================================================================||\n");
-    printf("||************************* SELECT USER TYPE ********************************||\n");
+    printf("||******************************** USER TYPE ********************************||\n");
     printf("||===========================================================================||\n");
     printf("||                                                                           ||\n");
     printf("||  PRESS [1] => REGULAR USER                                                ||\n");
     printf("||  PRESS [2] => ADMINISTRATOR                                               ||\n");
-    printf("||  PRESS [3] => EXIT                                                        ||\n");
     printf("||                                                                           ||\n");
     printf("||===========================================================================||\n");
     choice:{
@@ -38,17 +39,6 @@ int main(){
     else if( choice == 2){
         amenu();
     }
-    else if(choice == 3){
-        system("cls");
-        printf("||===========================================================================||\n");
-        printf("||                                                                           ||\n");
-        printf("||                     THANK YOU FOR USING THE SYSTEM                        ||\n");
-        printf("||                                                                           ||\n");
-        printf("||===========================================================================||\n");
-        printf("                       ENTER ANY KEY TO EXIT");
-        getch();
-        exit(0);
-    }
     else{
         printf("** IVALID OPTION \n");
         goto choice;
@@ -56,8 +46,6 @@ int main(){
     getch();
     return 0;
 }
-
-
 void rmenu(){
     rlogin();
     system("cls");
@@ -82,7 +70,7 @@ void rmenu(){
         printf("||===========================================================================||\n");
         printf("||********************** SPA APPOINTMENT BOOKING SYSTEM *********************||\n");
         printf("||---------------------------------------------------------------------------||\n");
-        printf("||****************************** USER PANEL *********************************||\n");
+        printf("||******************************* USER PANEL ********************************||\n");
         printf("||===========================================================================||\n");
         printf("||                                                                           ||\n");
         printf("||  PRESS [1] => BOOK APPOINTMENT                                            ||\n");
@@ -91,7 +79,7 @@ void rmenu(){
         printf("||                                                                           ||\n");
         printf("||  PRESS [3] => EDIT APPOINTMENT                                            ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [4] => SIGN OUT                                                    ||\n");
+        printf("||  PRESS [4] => EXIT                                                        ||\n");
         printf("||                                                                           ||\n");
         printf("||===========================================================================||\n");
         printf("||ENTER YOUR CHOICE => ");
@@ -120,11 +108,12 @@ void rmenu(){
                 system("cls");
                 printf("||===========================================================================||\n");
                 printf("||                                                                           ||\n");
-                printf("||                                SIGNING OUT                                ||\n");
+                printf("||                     THANK YOU FOR USING THE SYSTEM                        ||\n");
                 printf("||                                                                           ||\n");
                 printf("||===========================================================================||\n");
-                Sleep(1500);
-                main();
+                printf("                       ENTER ANY KEY TO EXIT");
+                getch();
+                exit(0);
             }
             default:
             {
@@ -141,6 +130,7 @@ void rmenu(){
             }
         }
     }
+
 }
 
 void amenu(){
@@ -178,7 +168,7 @@ void amenu(){
         printf("||                                                                           ||\n");
         printf("||  PRESS [4] => CHANGE PASSWORD                                             ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [5] => SIGN OUT                                                    ||\n");
+        printf("||  PRESS [5] => EXIT                                                        ||\n");
         printf("||                                                                           ||\n");
         printf("||===========================================================================||\n");
         printf("||ENTER YOUR CHOICE => ");
@@ -212,11 +202,12 @@ void amenu(){
                 system("cls");
                 printf("||===========================================================================||\n");
                 printf("||                                                                           ||\n");
-                printf("||                                SIGNING OUT                                ||\n");
+                printf("||                     THANK YOU FOR USING OUR SYSTEM                        ||\n");
                 printf("||                                                                           ||\n");
                 printf("||===========================================================================||\n");
-                Sleep(1500);
-                main();
+                printf("                       ENTER ANY KEY TO EXIT");
+                getch();
+                exit(0);
             }
             default:
             {
@@ -234,3 +225,13 @@ void amenu(){
         }
     }
 }
+
+void rlogin(){}
+void alogin(){}
+void book_appointment(){}
+void cancel_appointment(){}
+void edit_appointment(){}
+void view_transactions(){}
+void delete_transactions(){}
+void edit_services(){}
+void change_password(){}
