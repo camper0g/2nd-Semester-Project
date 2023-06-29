@@ -176,7 +176,7 @@ void amenu(){
         printf("||                                                                           ||\n");
         printf("||  PRESS [3] => ADD/ UPDATE SERVICES                                        ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [4] => CHANGE PASSWORD                                             ||\n");
+        printf("||  PRESS [4] => CHANGE LOGIN INFORMATION                                    ||\n");
         printf("||                                                                           ||\n");
         printf("||  PRESS [5] => SIGN OUT                                                    ||\n");
         printf("||                                                                           ||\n");
