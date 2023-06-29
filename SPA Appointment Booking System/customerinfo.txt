@@ -1,3 +1,1 @@
-
-saroj baral 9800000000 3 Swedish_Massage 5 5000 1
-saroj baral 9800000001 3 Swedish_Massage 3 5000 2
+saroj Baral 9800000000 1 Hotstone_Massage 0 2000 1

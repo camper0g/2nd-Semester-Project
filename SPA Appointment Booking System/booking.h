@@ -12,48 +12,49 @@ void book_appointment()
     printf("||===========================================================================||\n");
     printf("||***************************** SERVICE AVAILABLE ***************************||\n");
     printf("||===========================================================================||\n");
-    printf("||                                                                           ||\n");
+    printf("\n");
     bookf = fopen("service1.txt", "r");
-    if(bookf == NULL)
+    if(bookf == NULL || (choice = fgetc(bookf)) == EOF)
     {
-        printf("||                         NO SERVICE RECORDS FOUND!                        ||\n");
+        printf("||        [1] => CONTACT ADMIN TO ADD SERVICE!\n");
         printf("\n");
     }
     else{
+        fseek(bookf, 0, SEEK_SET);
         fscanf(bookf,"%s %d", b.service, &b.price);
+        printf("||  PRESS [1] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
+        printf("\n");
+        fclose(bookf);
     }
-    printf("||  PRESS [1] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
-    printf("\n");
-    fclose(bookf);
-
     bookf = fopen("service2.txt", "r");
-    if(bookf == NULL)
+    if(bookf == NULL || (choice = fgetc(bookf)) == EOF)
     {
-        printf("||                         NO SERVICE RECORDS FOUND!                        ||\n");
+        printf("||        [2] => CONTACT ADMIN TO ADD SERVICE!\n");
         printf("\n");
     }
     else{
+        fseek(bookf, 0, SEEK_SET);
         fscanf(bookf,"%s %d", b.service, &b.price);
+        printf("||  PRESS [2] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
+        printf("\n");
+        fclose(bookf);
     }
-    printf("||  PRESS [2] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
-    printf("\n");
-    fclose(bookf);
 
     bookf = fopen("service3.txt", "r");
-    if(bookf == NULL)
+    if(bookf == NULL || (choice = fgetc(bookf)) == EOF)
     {
-        printf("||                         NO SERVICE RECORDS FOUND!                        ||\n");
+        printf("||        [3] => CONTACT ADMIN TO ADD SERVICE!\n");
         printf("\n");
     }
     else{
+        fseek(bookf, 0, SEEK_SET);
         fscanf(bookf,"%s %d", b.service, &b.price);
+        printf("||  PRESS [3] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
+        printf("\n");
+        fclose(bookf);
     }
-    printf("||  PRESS [3] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
-    printf("\n");
-    fclose(bookf);
-
     printf("||  PRESS [4] => RETURN BACK\n");
-    printf("||                                                                           ||\n");
+    printf("\n");
     printf("||===========================================================================||\n");
     choice:
     {
@@ -401,6 +402,7 @@ void cancel_appointment()
     printf("||      DO YOU WANT TO CANCEL AN APPOINTMENT?                                ||\n");
     printf("||      Press [Y/y] => YES                                                   ||\n");
     printf("||      Press [N/n] => NO                                                    ||\n");
+    printf("||                                                                           ||\n");
     printf("||===========================================================================||\n");
 
     printf("||      Enter Your Choice ==> ");
@@ -435,7 +437,7 @@ void cancel_appointment()
             }
         }
 
-        cusf = fopen("customerinfo.txt", "r");
+        cusf = fopen("customerinfo.txt", "r+");
 
         if(cusf == NULL)
         {
@@ -452,9 +454,12 @@ void cancel_appointment()
         }
         else{
 
-            while(fscanf(cusf,"%s %s %lld %d %s %d %d %d\n", c.fname, c.lname, &c.mobile, &b.sn, b.service, &c.sn, &c.total, &c.tid) != EOF){
+            while(fscanf(cusf, "%s %s %lld %d %s %d %d %d\n", c.fname, c.lname, &c.mobile, &b.sn, b.service, &c.sn, &c.total, &c.tid) != EOF){
                 if(tid == c.tid){
                     if(mobile == c.mobile){
+                        c.total = 0;
+                        fseek(cusf, -10 , SEEK_CUR);
+                        fprintf(cusf, "%d", c.total);
                         break;
                     }
                     else{
@@ -472,10 +477,10 @@ void cancel_appointment()
             if(b.sn == 1){
                 bookf = fopen("service1.txt","r");
             }
-            if(b.sn == 2){
+            else if(b.sn == 2){
                 bookf = fopen("service2.txt","r");
             }
-            else{
+            else if(b.sn == 3){
                 bookf = fopen("service3.txt","r");
             }
             if(bookf == NULL)
@@ -491,31 +496,31 @@ void cancel_appointment()
                 system("cls");
                 return;
             }
-            fscanf(bookf,"%s %d", b.service, &b.price);
+            fscanf(bookf,"%s %d\n", b.service, &b.price);
             for( i = 0; i < 7; i++){
-                fscanf(bookf,"\n%d",&b.time[i]);
+                fscanf(bookf,"%d\n",&b.time[i]);
             }
             fclose(bookf);
             
             if(b.sn == 1){
                 bookf = fopen("service1.txt","w");
             }
-            if(b.sn == 2){
+            else if(b.sn == 2){
                 bookf = fopen("service2.txt","w");
             }
-            else{
+            else if(b.sn == 3){
                 bookf = fopen("service3.txt","w");
             }
-            fprintf(bookf,"%s %d",b.service, b.price);
+            fprintf(bookf,"%s %d\n",b.service, b.price);
             for (i =0; i < 7; i++){
                 if(c.sn == i+1){
                     if(b.time[i] == 0){
                         b.time[i] = 1;
-                        fprintf(bookf,"\n%d", b.time[i]);
+                        fprintf(bookf,"%d\n", b.time[i]);
                     }
                 }
                 else{
-                    fprintf(bookf,"\n%d",b.time[i]);
+                    fprintf(bookf,"%d\n",b.time[i]);
                 }
             }
             fclose(bookf);
@@ -557,4 +562,6 @@ void cancel_appointment()
     }
 }
 
-void edit_appointment(){}
+void edit_appointment(){
+    
+}

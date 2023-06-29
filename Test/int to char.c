@@ -1,47 +1,37 @@
 #include <stdio.h>
 #include <conio.h>
-#include <string.h>
-
+struct book{
+    int sn;
+    char service[50];
+    int price;
+    int time[7];
+}; 
 int main(){
-    char uname[10], pass[10], ch = ' ';
-    int buname, bpass, i=0;
-    
-    printf("Enter Username:");
-    scanf("%s", uname);
-    printf("Enter password:");
-    while(1)
-    {
-        ch = getch();
-        if(ch == '\r'){
-            pass[i] = '\0';
-            break;
+
+    struct book b;
+    FILE *bookf;
+    int i, j;
+    char ch;
+
+    for(i = 0; i<3; i++){
+        if(i == 0){
+            bookf = fopen("service1.txt", "r+");
+        }
+        else if(i == 1){
+            bookf = fopen("service2.txt", "r+");
         }
         else{
-            pass[i] = ch;
-            printf("*");
+            bookf = fopen("service3.txt", "r+");
         }
-        i++;
+        fscanf(bookf, "%s %d\n", b.service, &b.price);
+        fseek(bookf, 0, SEEK_SET);
+        fprintf(bookf, "%s %d\n", b.service, b.price);
+        for (j = 0; j < 7; j++){
+            b.time[j] = 1;
+            fprintf(bookf, "%d\n", b.time[j]);
+        }
+        fclose(bookf);
     }
-
-    printf("\n%s",uname);
-    printf("\n%s", pass);
-
-    sscanf(uname, "%d", &buname);
-    sscanf(pass, "%d", &bpass);
-    
-
-    printf("\n%d", buname);
-    printf("\n%d", bpass);
-
-    sprintf(buname, "%s", uname);
-    sprintf(bpass, "%s", pass);
-    
-
-    printf("\n%s", uname);
-    printf("\n%s", pass);
-
     getch();
-
     return 0;
-
 }

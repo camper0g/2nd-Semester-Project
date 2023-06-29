@@ -4,7 +4,7 @@ FILE *bookf;
 FILE *cusf;
 FILE *file;
 
-int i, j, k;
+int i=0 , j=0, k=0;
 
 struct book{
     int sn;
