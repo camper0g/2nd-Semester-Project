@@ -2,7 +2,6 @@
 
 void book_appointment()
 {
-
     struct book b;
     struct customerinfo c;
     char choice, confirm;
@@ -62,7 +61,6 @@ void book_appointment()
         scanf("%d",&ch);
         fflush(stdin);
     }
-
 
     if(ch == 1){
         bookf = fopen("service1.txt", "r");
@@ -179,7 +177,6 @@ void book_appointment()
             return;
         }
         else
-
         goto choose;
     }
     choose:
@@ -448,7 +445,7 @@ void cancel_appointment()
         mobile:{
             if( i < 3){
                 printf("||  Enter Your Mobile Number For Verification ==> ");
-                scanf("%lldd", &mobile);
+                scanf("%lld", &mobile);
                 i++;
             }
             else{
