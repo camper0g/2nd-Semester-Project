@@ -169,8 +169,8 @@ void book_appointment()
             printf("||                           Visit Us After Few Days                         ||\n");
             printf("||                                                                           ||\n");
             printf("||===========================================================================||\n");
-            printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
-            getch();
+            printf("                             RETURNING IN FEW SECONDS");
+            Sleep(1500);
             system("cls");
             return;
         }
