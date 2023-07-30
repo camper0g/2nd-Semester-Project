@@ -1,5 +1,3 @@
-#include "headers.h"
-
 void book_appointment()
 {
     struct book b;
@@ -366,6 +364,7 @@ void book_appointment()
                     }
                     fclose(bookf);
 
+                    printf("||\n");
                     printf("||  PRESS ANY KEY TO CONTINUE");
                     getch();
                     system("cls");

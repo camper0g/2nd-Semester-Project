@@ -1,3 +1,4 @@
+#include "headers.h"
 #include "declaration.h"
 #include "login.h"
 #include "user.h"
@@ -89,7 +90,7 @@ void rmenu(){
         printf("||                                                                           ||\n");
         printf("||  PRESS [2] => CANCEL APPOINTMENT                                          ||\n");
         printf("||                                                                           ||\n");
-        printf("||  PRESS [3] => EDIT APPOINTMENT                                            ||\n");
+        printf("||  PRESS [3] => SHIFT SCHEDULE                                              ||\n");
         printf("||                                                                           ||\n");
         printf("||  PRESS [4] => SIGN OUT                                                    ||\n");
         printf("||                                                                           ||\n");

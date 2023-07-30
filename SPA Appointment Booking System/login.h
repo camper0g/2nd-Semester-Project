@@ -1,5 +1,3 @@
-#include "headers.h"
-
 void rlogin()
 {
 	int a = 4, i = 0;

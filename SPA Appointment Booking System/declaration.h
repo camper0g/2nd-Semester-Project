@@ -1,5 +1,3 @@
-#include "headers.h"
-
 FILE *bookf;
 FILE *cusf;
 FILE *file;
