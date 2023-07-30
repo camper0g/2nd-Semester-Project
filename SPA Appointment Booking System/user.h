@@ -587,5 +587,302 @@ void cancel_appointment()
 }
 
 void edit_appointment(){
+    system("cls");
     
+    struct book b;
+    struct customerinfo c;
+
+    int tid;
+    long long int mobile;
+    char choice;
+
+    printf("||===========================================================================||\n");
+    printf("||***************************** SHIFT APPOINTMENT ***************************||\n");
+    printf("||===========================================================================||\n");
+    printf("||                                                                           ||\n");
+    printf("||      DO YOU WANT TO SHIFT AN APPOINTMENT?                                 ||\n");
+    printf("||      Press [Y/y] => YES                                                   ||\n");
+    printf("||      Press [N/n] => NO                                                    ||\n");
+    printf("||                                                                           ||\n");
+    printf("||===========================================================================||\n");
+
+    printf("||      Enter Your Choice ==> ");
+    choice = getch();
+    printf("%c\n", choice);
+
+    tolower(choice);
+    if(choice == 'y'){
+        printf("||============================= Fill Details ================================||\n");
+
+        printf("||  Enter Your Ticket ID ==> ");
+        scanf("%d", &tid);
+
+        i = 0;
+        mobile:{
+            if( i < 3){
+                printf("||  Enter Your Mobile Number For Verification ==> ");
+                scanf("%lld", &mobile);
+                i++;
+            }
+            else{
+                system("cls");
+                printf("||===========================================================================||\n");
+                printf("||                                                                           ||\n");
+                printf("||                           TOO MANY ATTEMPTS!!!                            ||\n");
+                printf("||                                                                           ||\n");
+                printf("||===========================================================================||\n");
+                printf("||                        RETURNING BACK TO MAIN MENU IN FEW SECONDS");
+                Sleep(1500);
+                system("cls");
+                return;
+            }
+        }
+
+        cusf = fopen("customerinfo.txt", "r");
+
+        if(cusf == NULL)
+        {
+            system("cls");
+            printf("||===========================================================================||\n");
+            printf("||                                                                           ||\n");
+            printf("||                         NO CUSTOMERS RECORDS FOUND!                       ||\n");
+            printf("||                                                                           ||\n");
+            printf("||===========================================================================||\n");
+            printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+            getch();
+            system("cls");
+            return;
+        }
+        else{
+
+            while(fscanf(cusf, "%s %s %lld %d %s %d %d %d\n", c.fname, c.lname, &c.mobile, &b.sn, b.service, &c.sn, &c.total, &c.tid) != EOF){
+                if(tid == c.tid){
+                    if(mobile == c.mobile){
+
+                        system("cls");
+                        printf("||===========================================================================||\n");
+                        printf("||*************************** CUSTOMER INFO *********************************||\n");
+                        printf("||===========================================================================||\n");
+                        printf("||  Tikcet ID     ==> %d\n", c.tid);
+                        printf("||  Name          ==> %s %s\n", c.fname, c.lname);
+                        printf("||  Mobile Number ==> %lld\n", c.mobile);
+                        printf("||  Service Name  ==> %s\n", b.service);
+                        printf("||===========================================================================||\n");
+                        if(c.sn == 1){
+                            printf("||  Scheduled at  ==> 10AM - 11AM\n");
+                        }
+                        else if(c.sn == 2){
+                            printf("||  Scheduled at  ==> 11AM - 12PM\n");
+                        }
+                        else if(c.sn == 3){
+                            printf("||  Scheduled at  ==> 12AM - 1PM\n");
+                        }
+                        else if(c.sn == 4){
+                            printf("||  Scheduled at  ==> 1PM - 2PM\n");
+                        }
+                        else if(c.sn == 5){
+                            printf("||  Scheduled at  ==> 2PM - 3PM\n");
+                        }
+                        else if(c.sn == 6){
+                            printf("||  Scheduled at  ==> 3PM - 4PM\n");
+                        }
+                        else if(c.sn == 7){
+                            printf("||  Scheduled at  ==> 4PM - 5PM\n");
+                        }
+                        printf("||===========================================================================||\n");
+
+                        if(b.sn == 1){
+                            bookf = fopen("service1.txt","r");
+                        }
+                        else if(b.sn == 2){
+                            bookf = fopen("service2.txt","r");
+                        }
+                        else if(b.sn == 3){
+                            bookf = fopen("service3.txt","r");
+                        }
+                        if(bookf == NULL)
+                        {
+                            system("cls");
+                            printf("||===========================================================================||\n");
+                            printf("||                                                                           ||\n");
+                            printf("||                         NO SERVICES RECORDS FOUND!                        ||\n");
+                            printf("||                                                                           ||\n");
+                            printf("||===========================================================================||\n");
+                            printf("                       PRESS ANY KEY TO RETURN TO MAIN MENU");
+                            getch();
+                            system("cls");
+                            return;
+                        }
+                        fscanf(bookf,"%s %d\n", b.service, &b.price);
+                        for( i = 0; i < 7; i++){
+                            fscanf(bookf,"%d\n",&b.time[i]);
+                        }
+                        fclose(bookf);
+                        printf("||===========================================================================||\n");
+                        printf("||**************************** AVAILABLE SCHEDULES **************************||\n");
+                        printf("||===========================================================================||\n");
+                        printf("||                                                                           ||\n");
+                        if(b.time[0] == 1){
+                            printf("||  PRESS [1] => 10AM - 11PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  10AM - 11PM => BOOKED                                                    ||\n");
+                        }
+                        if(b.time[1] == 1){
+                            printf("||  PRESS [2] => 11AM - 12PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  11AM - 12PM => BOOKED                                                    ||\n");
+                        }
+                        if(b.time[2] == 1){
+                            printf("||  PRESS [3] => 12PM - 01PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  12PM - 01PM => BOOKED                                                    ||\n");
+                        }
+                        if(b.time[3] == 1){
+                            printf("||  PRESS [4] => 01PM - 02PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  01PM - 02PM => BOOKED                                                    ||\n");
+                        }
+                        if(b.time[4] == 1){
+                            printf("||  PRESS [5] => 02PM - 03PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  02PM - 03PM => BOOKED                                                    ||\n");
+                        }
+                        if(b.time[5] == 1){
+                            printf("||  PRESS [6] => 03PM - 04PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  03PM - 04PM => BOOKED                                                    ||\n");
+                        }
+                        if(b.time[6] == 1){
+                            printf("||  PRESS [7] => 04PM - 05PM                                                 ||\n");
+                        }
+                        else{
+                            printf("||  04PM - 05PM => BOOKED                                                    ||\n");
+                        }
+                        printf("||                                                                           ||\n");
+                        printf("||===========================================================================||\n");
+                        printf("||      DO YOU WANT TO SHIFT THE APPOINTMENT?                                ||\n");
+                        printf("||      Press [Y/y] => YES                                                   ||\n");
+                        printf("||      Press [N/n] => NO                                                    ||\n");
+                        printf("||===========================================================================||\n");
+                        con:
+                        {
+                            printf("||      Enter Your Choice ==> ");
+                            choice = getch();
+                            printf("%c\n",choice);
+                        }
+                        tolower(choice);
+                        if(choice == 'y')
+                        {
+                            b.time[c.sn - 1] = 1;
+                            appointments:
+                            {
+                                printf("||===========================================================================||\n");
+                                printf("||  Select Schedule Number ==> ");
+                                scanf("%d", &c.sn);
+
+                                if(c.sn > 0 && c.sn < 8){
+                                    for(i = 0; i < 7; i++){
+                                        if(c.sn == i+1){
+                                            if(b.time[i] == 1){
+                                                b.time[i] = 0;
+                                                break;
+                                            }
+                                            else{
+                                                printf("**  BOOKED ALREADY\n");
+                                                goto appointments;
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    printf("**  INVALID INPUT\n");
+                                    goto appointments;
+                                }
+                            }
+                            fseek(cusf, -10 , SEEK_CUR);
+                            fprintf(cusf, "%d", c.sn);
+                        }
+                        else if(choice == 'n')
+                        {
+                            system("cls");
+                            return;
+                        }
+                        else
+                        {
+                            printf("**  INVALID INPUT\n");
+                            goto con;
+                        }
+
+
+                        break;
+                    }
+                    else{
+                        printf("**  MOBILE NUMBER VERIFICATION FAILED\n");
+                        goto mobile;
+                    }
+                }
+            }
+            if(tid != c.tid){
+                printf("**  ENTER VALID TICKET ID\n");
+                Sleep(1500);
+                cancel_appointment();
+            }
+            fclose(cusf);
+
+            if(b.sn == 1)
+            {
+                bookf = fopen("service1.txt","w");
+            }
+            else if(b.sn == 2)
+            {
+                bookf = fopen("service2.txt","w");
+            }
+            else if(b.sn == 3)
+            {
+                bookf = fopen("service3.txt","w");
+            }
+            fprintf(bookf,"%s %d\n",b.service, b.price);
+            for (i =0; i < 7; i++)
+            {
+               fprintf(bookf,"\n%d",b.time[i]);
+            }
+            fclose(bookf);
+
+            printf("||\n");
+            printf("||  PRESS ANY KEY TO CONTINUE");
+            getch();
+            system("cls");
+        }
+                
+    }
+    else if(choice == 'n'){
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                                 NO PROBLEM!                               ||\n");
+        printf("||             YOU'LL BE RETURNED BACK TO MAIN MENU IN A FEW SECONDS         ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        Sleep(2000);
+        system("cls");
+        return;
+    }
+    else{
+        system("cls");
+        printf("||===========================================================================||\n");
+        printf("||                                                                           ||\n");
+        printf("||                              ENTER VALID INPUT                            ||\n");
+        printf("||                PLEASE RE-CONSIDER YOUR INPUT IN A FEW SECONDS             ||\n");
+        printf("||                                                                           ||\n");
+        printf("||===========================================================================||\n");
+        Sleep(1500);
+        system("cls");
+        edit_appointment();
+    }
 }
