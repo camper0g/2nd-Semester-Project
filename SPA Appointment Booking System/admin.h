@@ -1,5 +1,3 @@
-#include "headers.h"
-
 void view_transactions(){
 
     system("cls");
@@ -176,8 +174,8 @@ void edit_services()
         fscanf(bookf,"%s %d", b.service, &b.price);
         printf("||  PRESS [1] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
         printf("\n");
-        fclose(bookf);
     }
+    fclose(bookf);
     
 
     bookf = fopen("service2.txt", "r");
@@ -189,8 +187,8 @@ void edit_services()
         fscanf(bookf,"%s %d", b.service, &b.price);
         printf("||  PRESS [2] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
         printf("\n");
-        fclose(bookf);
     }
+    fclose(bookf);
 
     bookf = fopen("service3.txt", "r");
     if(bookf == NULL){
@@ -201,8 +199,8 @@ void edit_services()
         fscanf(bookf,"%s %d", b.service, &b.price);
         printf("||  PRESS [3] => %s \n\t\t PRICE -> RS.%d\n", b.service, b.price);
         printf("\n");
-        fclose(bookf);
     }
+    fclose(bookf);
 
     printf("||  PRESS [4] => RETURN BACK\n");
     printf("||                                                                           ||\n");
@@ -255,6 +253,8 @@ void edit_services()
         tolower(choice);
 
         if(choice == 'y'){
+            i = 0;
+            
             if(ch == 1){
                 bookf = fopen("service1.txt", "w");
             }
@@ -269,7 +269,6 @@ void edit_services()
                 c = getch();            
                 if(c == 13){
                     b.service[i]='\0';
-                    i = 0;
                     break;                                        
                 }
                 else if(c == 8){
@@ -287,7 +286,7 @@ void edit_services()
                     printf("%c",c);            
                 }
             }
-            printf("\n|| ENTER PRICE OF SERVICE => ");
+            printf("\n||  ENTER PRICE OF SERVICE => ");
             scanf("%d", &b.price);
 
             fprintf(bookf,"%s %d", b.service, b.price);
