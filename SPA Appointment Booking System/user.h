@@ -854,8 +854,13 @@ void edit_appointment(){
             }
             fclose(bookf);
 
-            printf("||\n");
-            printf("||  PRESS ANY KEY TO CONTINUE");
+            system("cls");
+            printf("||===========================================================================||\n");
+            printf("||                                                                           ||\n");
+            printf("||                     APPOINTMENT SHIFTED SUCCESSFULLY                      ||\n");
+            printf("||                                                                           ||\n");
+            printf("||===========================================================================||\n");
+            printf("                       PRESS ANY KEY TO CONTINUE");
             getch();
             system("cls");
         }
