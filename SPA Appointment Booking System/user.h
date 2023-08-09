@@ -285,7 +285,7 @@ void book_appointment()
                     c.tid = 0;
                 }
                 else{
-                    fseek(cusf, -3, SEEK_END);
+                    fseek(cusf, -5, SEEK_END);
                     fscanf(cusf, "%d", &c.tid);
                 }
 
@@ -345,7 +345,7 @@ void book_appointment()
                         printf("File Not Found!\n");
                     }
                     else{
-                        fprintf(cusf,"%s %s %lld %d %s %d %d %d\n", c.fname, c.lname, c.mobile, b.sn, b.service, c.sn, c.total, c.tid);
+                        fprintf(cusf,"%s %s %lld %d %s %d %d %03d\n", c.fname, c.lname, c.mobile, b.sn, b.service, c.sn, c.total, c.tid);
                     }
                     fclose(cusf);
 
