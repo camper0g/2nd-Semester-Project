@@ -8,7 +8,7 @@ void rlogin()
 
     do
     {
-        file = fopen("login.bat", "rb");
+        file = fopen("./Appdata/login.bat", "rb");
         if (file == NULL) 
         {
             system("cls");
@@ -21,8 +21,8 @@ void rlogin()
             getch();
             system("cls");
             
-            file = fopen("login.bat", "wb");
-            SetFileAttributes("login.bat", FILE_ATTRIBUTE_HIDDEN);
+            file = fopen("./Appdata/login.bat", "wb");
+            SetFileAttributes("./Appdata/login.bat", FILE_ATTRIBUTE_HIDDEN);
 
             printf("||==================== USER >>> SIGN UP =======================||\n");
             printf("||  ENTER NEW USERNAME: ");
@@ -142,7 +142,7 @@ void alogin()
 
     do
     {
-        file = fopen("admin.bat", "rb");
+        file = fopen("./Appdata/admin.bat", "rb");
         if (file == NULL) 
         {
             system("cls");
@@ -155,8 +155,8 @@ void alogin()
             getch();
             system("cls");
             
-            file = fopen("admin.bat", "wb");
-            SetFileAttributes("admin.bat", FILE_ATTRIBUTE_HIDDEN);
+            file = fopen("./Appdata/admin.bat", "wb");
+            SetFileAttributes("./Appdata/admin.bat", FILE_ATTRIBUTE_HIDDEN);
 
 
             printf("||================== SIGN UP >>> ADMINISTRATOR =====================||\n");
@@ -314,9 +314,9 @@ void change_password(){
                 printf("*");            
             }
         }
-        SetFileAttributes("login.bat", FILE_ATTRIBUTE_NORMAL);
+        SetFileAttributes("./Appdata/login.bat", FILE_ATTRIBUTE_NORMAL);
 
-        file = fopen("login.bat", "wb");
+        file = fopen("./Appdata/login.bat", "wb");
 
         if(file == NULL)
         {
@@ -326,7 +326,7 @@ void change_password(){
         fprintf(file, "%s %s",uname ,pword);
         fclose(file);
 
-        SetFileAttributes("login.bat", FILE_ATTRIBUTE_HIDDEN);
+        SetFileAttributes("./Appdata/login.bat", FILE_ATTRIBUTE_HIDDEN);
 
         system("cls");
         printf("||===========================================================================||\n");
@@ -372,9 +372,9 @@ void change_password(){
             }
         }
 
-        SetFileAttributes("admin.bat", FILE_ATTRIBUTE_NORMAL);
+        SetFileAttributes("./Appdata/admin.bat", FILE_ATTRIBUTE_NORMAL);
 
-        file = fopen("admin.bat", "wb");
+        file = fopen("./Appdata/admin.bat", "wb");
         if (file == NULL) 
         {
             printf("\n\n\t\tERROR OPENING FILE.\n");
@@ -383,7 +383,7 @@ void change_password(){
         fprintf(file, "%s %s",uname ,pword);
         fclose(file);
 
-        SetFileAttributes("admin.bat", FILE_ATTRIBUTE_HIDDEN);
+        SetFileAttributes("./Appdata/admin.bat", FILE_ATTRIBUTE_HIDDEN);
 
         system("cls");
         printf("||===========================================================================||\n");

@@ -4,7 +4,7 @@ void view_transactions(){
     char sn[50];
     struct customerinfo c;
     struct book b;
-    cusf = fopen("customerinfo.txt", "r");
+    cusf = fopen("./Appdata/customerinfo.txt", "r");
 
     if(cusf == NULL){
         system("cls");
@@ -78,7 +78,7 @@ void delete_transactions()
     choice = tolower(choice);
 
     if(choice == 'y'){
-        cusf = fopen("customerinfo.txt", "w");
+        cusf = fopen("./Appdata/customerinfo.txt", "w");
         if(cusf == NULL){
             system("cls");
             printf("||===========================================================================||\n");
@@ -104,13 +104,13 @@ void delete_transactions()
 
             for(i = 0; i<3; i++){
                 if(i == 0){
-                    bookf = fopen("service1.txt", "r+");
+                    bookf = fopen("./Appdata/service1.txt", "r+");
                 }
                 else if(i == 1){
-                    bookf = fopen("service2.txt", "r+");
+                    bookf = fopen("./Appdata/service2.txt", "r+");
                 }
                 else{
-                    bookf = fopen("service3.txt", "r+");
+                    bookf = fopen("./Appdata/service3.txt", "r+");
                 }
                 fscanf(bookf, "%s %d\n", b.service, &b.price);
                 fseek(bookf, 0, SEEK_SET);
@@ -165,7 +165,7 @@ void edit_services()
     printf("||***************************** LIST OF SERVICES ****************************||\n");
     printf("||===========================================================================||\n");
     printf("||                                                                           ||\n");
-    bookf = fopen("service1.txt", "r");
+    bookf = fopen("./Appdata/service1.txt", "r");
     if(bookf == NULL){
         printf("||  PRESS [1] => ADD SERVICE\n");
         printf("\n");
@@ -178,7 +178,7 @@ void edit_services()
     fclose(bookf);
     
 
-    bookf = fopen("service2.txt", "r");
+    bookf = fopen("./Appdata/service2.txt", "r");
     if(bookf == NULL){
         printf("||  PRESS [2] => ADD SERVICE\n");
         printf("\n");
@@ -190,7 +190,7 @@ void edit_services()
     }
     fclose(bookf);
 
-    bookf = fopen("service3.txt", "r");
+    bookf = fopen("./Appdata/service3.txt", "r");
     if(bookf == NULL){
         printf("||  PRESS [3] => ADD SERVICE\n");
         printf("\n");
@@ -256,13 +256,13 @@ void edit_services()
             i = 0;
             
             if(ch == 1){
-                bookf = fopen("service1.txt", "w");
+                bookf = fopen("./Appdata/service1.txt", "w");
             }
             else if(ch == 2){
-                bookf = fopen("service2.txt", "w");
+                bookf = fopen("./Appdata/service2.txt", "w");
             }
             else if(ch == 3){
-                bookf = fopen("service3.txt", "w");
+                bookf = fopen("./Appdata/service3.txt", "w");
             }
             printf("||  ENTER SERVICE NAME (Use '_' for spaces) => ");
             while(1){

@@ -1,8 +1,8 @@
-#include "headers.h"
-#include "declaration.h"
-#include "login.h"
-#include "user.h"
-#include "admin.h"
+#include "./includes/headers.h"
+#include "./includes/declaration.h"
+#include "./includes/login.h"
+#include "./includes/user.h"
+#include "./includes/admin.h"
 
 void rlogin();
 void alogin();
@@ -17,6 +17,7 @@ void edit_services();
 void change_password();
 
 int main(){
+    system("mkdir Appdata");
     int choice;
     system("cls");
     printf("||===========================================================================||\n");

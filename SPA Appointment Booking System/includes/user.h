@@ -10,7 +10,7 @@ void book_appointment()
     printf("||***************************** SERVICE AVAILABLE ***************************||\n");
     printf("||===========================================================================||\n");
     printf("\n");
-    bookf = fopen("service1.txt", "r");
+    bookf = fopen("./Appdata/service1.txt", "r");
     if(bookf == NULL || (choice = fgetc(bookf)) == EOF)
     {
         printf("||        [1] => CONTACT ADMIN TO ADD SERVICE!\n");
@@ -23,7 +23,7 @@ void book_appointment()
         printf("\n");
         fclose(bookf);
     }
-    bookf = fopen("service2.txt", "r");
+    bookf = fopen("./Appdata/service2.txt", "r");
     if(bookf == NULL || (choice = fgetc(bookf)) == EOF)
     {
         printf("||        [2] => CONTACT ADMIN TO ADD SERVICE!\n");
@@ -37,7 +37,7 @@ void book_appointment()
         fclose(bookf);
     }
 
-    bookf = fopen("service3.txt", "r");
+    bookf = fopen("./Appdata/service3.txt", "r");
     if(bookf == NULL || (choice = fgetc(bookf)) == EOF)
     {
         printf("||        [3] => CONTACT ADMIN TO ADD SERVICE!\n");
@@ -61,13 +61,13 @@ void book_appointment()
     }
 
     if(ch == 1){
-        bookf = fopen("service1.txt", "r");
+        bookf = fopen("./Appdata/service1.txt", "r");
     }
     else if(ch == 2){
-        bookf = fopen("service2.txt", "r");
+        bookf = fopen("./Appdata/service2.txt", "r");
     }
     else if(ch == 3){
-        bookf = fopen("service3.txt", "r");
+        bookf = fopen("./Appdata/service3.txt", "r");
     }
     else if(ch == 4){
         system("cls");
@@ -180,13 +180,13 @@ void book_appointment()
     choose:
     {
         if(ch == 1){
-            bookf = fopen("service1.txt","r");
+            bookf = fopen("./Appdata/service1.txt","r");
         }
         else if(ch == 2){
-            bookf = fopen("service2.txt","r");
+            bookf = fopen("./Appdata/service2.txt","r");
         }
         else{
-            bookf = fopen("service3.txt","r");
+            bookf = fopen("./Appdata/service3.txt","r");
         }
         fscanf(bookf,"%s %d", b.service, &b.price);
         for( i = 0; i < 7; i++){
@@ -280,7 +280,7 @@ void book_appointment()
                 c.total = b.price;
                 b.sn = ch;
 
-                cusf = fopen("customerinfo.txt","r");
+                cusf = fopen("./Appdata/customerinfo.txt","r");
                 if(cusf == NULL){
                     c.tid = 0;
                 }
@@ -339,7 +339,7 @@ void book_appointment()
                 tolower(confirm);
 
                 if(confirm == 'y'){
-                    cusf = fopen("customerinfo.txt","a");
+                    cusf = fopen("./Appdata/customerinfo.txt","a");
 
                     if(cusf == NULL){
                         printf("File Not Found!\n");
@@ -350,13 +350,13 @@ void book_appointment()
                     fclose(cusf);
 
                     if(ch == 1){
-                        bookf = fopen("service1.txt","w");
+                        bookf = fopen("./Appdata/service1.txt","w");
                     }
                     else if(ch == 2){
-                        bookf = fopen("service2.txt","w");
+                        bookf = fopen("./Appdata/service2.txt","w");
                     }
                     else{
-                        bookf = fopen("service3.txt","w");
+                        bookf = fopen("./Appdata/service3.txt","w");
                     }
                     fprintf(bookf,"%s %d",b.service, b.price);
                     for (i =0; i < 7; i++){
@@ -461,7 +461,7 @@ void cancel_appointment()
             }
         }
 
-        cusf = fopen("customerinfo.txt", "r+");
+        cusf = fopen("./Appdata/customerinfo.txt", "r+");
 
         if(cusf == NULL)
         {
@@ -499,13 +499,13 @@ void cancel_appointment()
             fclose(cusf);
             
             if(b.sn == 1){
-                bookf = fopen("service1.txt","r");
+                bookf = fopen("./Appdata/service1.txt","r");
             }
             else if(b.sn == 2){
-                bookf = fopen("service2.txt","r");
+                bookf = fopen("./Appdata/service2.txt","r");
             }
             else if(b.sn == 3){
-                bookf = fopen("service3.txt","r");
+                bookf = fopen("./Appdata/service3.txt","r");
             }
             if(bookf == NULL)
             {
@@ -527,13 +527,13 @@ void cancel_appointment()
             fclose(bookf);
             
             if(b.sn == 1){
-                bookf = fopen("service1.txt","w");
+                bookf = fopen("./Appdata/service1.txt","w");
             }
             else if(b.sn == 2){
-                bookf = fopen("service2.txt","w");
+                bookf = fopen("./Appdata/service2.txt","w");
             }
             else if(b.sn == 3){
-                bookf = fopen("service3.txt","w");
+                bookf = fopen("./Appdata/service3.txt","w");
             }
             fprintf(bookf,"%s %d\n",b.service, b.price);
             for (i =0; i < 7; i++){
@@ -638,7 +638,7 @@ void edit_appointment(){
             }
         }
 
-        cusf = fopen("customerinfo.txt", "r");
+        cusf = fopen("./Appdata/customerinfo.txt", "r");
 
         if(cusf == NULL)
         {
@@ -692,13 +692,13 @@ void edit_appointment(){
                         printf("||===========================================================================||\n");
 
                         if(b.sn == 1){
-                            bookf = fopen("service1.txt","r");
+                            bookf = fopen("./Appdata/service1.txt","r");
                         }
                         else if(b.sn == 2){
-                            bookf = fopen("service2.txt","r");
+                            bookf = fopen("./Appdata/service2.txt","r");
                         }
                         else if(b.sn == 3){
-                            bookf = fopen("service3.txt","r");
+                            bookf = fopen("./Appdata/service3.txt","r");
                         }
                         if(bookf == NULL)
                         {
@@ -837,15 +837,15 @@ void edit_appointment(){
 
             if(b.sn == 1)
             {
-                bookf = fopen("service1.txt","w");
+                bookf = fopen("./Appdata/service1.txt","w");
             }
             else if(b.sn == 2)
             {
-                bookf = fopen("service2.txt","w");
+                bookf = fopen("./Appdata/service2.txt","w");
             }
             else if(b.sn == 3)
             {
-                bookf = fopen("service3.txt","w");
+                bookf = fopen("./Appdata/service3.txt","w");
             }
             fprintf(bookf,"%s %d\n",b.service, b.price);
             for (i =0; i < 7; i++)
