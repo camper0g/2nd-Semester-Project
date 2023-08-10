@@ -27,7 +27,7 @@ void view_transactions(){
         printf("||  TICKET ID\tNAME \t\tMOBILE NUMBER\tSERVICE \tSCHEDULE APPOINTED\tAMOUNT  ||\n");
         printf("||                                                                                              ||\n");
         while(fscanf(cusf,"%s %s %lld %d %s %d %d %d\n",c.fname, c.lname, &c.mobile, &b.sn, b.service, &c.sn, &c.total, &c.tid) != EOF){
-            if (c.sn == 0){
+            if (c.total == 0){
                 strcpy(sn, "CANCELLED");
             }
             else if (c.sn == 1) {
@@ -106,11 +106,15 @@ void delete_transactions()
                 if(i == 0){
                     bookf = fopen("./Appdata/service1.txt", "r+");
                 }
-                else if(i == 1){
+                if(i == 1){
                     bookf = fopen("./Appdata/service2.txt", "r+");
                 }
-                else{
+                if(i == 2){
                     bookf = fopen("./Appdata/service3.txt", "r+");
+                }
+                if(bookf == NULL)
+                {
+                    continue;
                 }
                 fscanf(bookf, "%s %d\n", b.service, &b.price);
                 fseek(bookf, 0, SEEK_SET);
