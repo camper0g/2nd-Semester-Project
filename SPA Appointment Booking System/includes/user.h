@@ -201,9 +201,7 @@ void book_appointment()
         choice = getch();
         printf("%c\n",choice);
 
-
-        tolower(choice);
-        if(choice == 'y'){
+        if(choice == 'y' || choice == 'Y'){
             printf("||============================= Fill Details ================================||\n");
 
             name:
@@ -335,10 +333,9 @@ void book_appointment()
                     confirm = getch();
                     printf("%c\n",confirm);
                 }
-                
-                tolower(confirm);
 
-                if(confirm == 'y'){
+
+                if(confirm == 'y' || confirm == 'Y'){
                     cusf = fopen("./Appdata/customerinfo.txt","a");
 
                     if(cusf == NULL){
@@ -369,7 +366,7 @@ void book_appointment()
                     getch();
                     system("cls");
                 }
-                else if(confirm == 'n'){
+                else if(confirm == 'n' || confirm == 'N'){
                     c.tid--;
                     b.time[i] = 1;
                     goto book;
@@ -380,7 +377,7 @@ void book_appointment()
                 }
             }
         }
-        else if(choice == 'n'){
+        else if(choice == 'n' || choice == 'N'){
             system("cls");
             printf("||===========================================================================||\n");
             printf("||                                                                           ||\n");
@@ -433,8 +430,7 @@ void cancel_appointment()
     choice = getch();
     printf("%c\n", choice);
 
-    tolower(choice);
-    if(choice == 'y'){
+    if(choice == 'y' || choice == 'Y'){
         printf("||============================= Fill Details ================================||\n");
 
         printf("||  Enter Your Ticket ID ==> ");
@@ -560,7 +556,7 @@ void cancel_appointment()
         getch();
         system("cls");
     }
-    else if(choice == 'n'){
+    else if(choice == 'n' || choice == 'N'){
         system("cls");
         printf("||===========================================================================||\n");
         printf("||                                                                           ||\n");
@@ -610,8 +606,7 @@ void edit_appointment(){
     choice = getch();
     printf("%c\n", choice);
 
-    tolower(choice);
-    if(choice == 'y'){
+    if(choice == 'y' || choice == 'Y'){
         printf("||============================= Fill Details ================================||\n");
 
         printf("||  Enter Your Ticket ID ==> ");
@@ -776,8 +771,8 @@ void edit_appointment(){
                             choice = getch();
                             printf("%c\n",choice);
                         }
-                        tolower(choice);
-                        if(choice == 'y')
+
+                        if(choice == 'y' || choice == 'Y')
                         {
                             b.time[c.sn - 1] = 1;
                             appointments:
@@ -808,7 +803,7 @@ void edit_appointment(){
                             fseek(cusf, -10 , SEEK_CUR);
                             fprintf(cusf, "%d", c.sn);
                         }
-                        else if(choice == 'n')
+                        else if(choice == 'n' || choice == 'N')
                         {
                             system("cls");
                             return;
@@ -866,7 +861,7 @@ void edit_appointment(){
         }
                 
     }
-    else if(choice == 'n'){
+    else if(choice == 'n' || choice == 'N'){
         system("cls");
         printf("||===========================================================================||\n");
         printf("||                                                                           ||\n");
